@@ -5,19 +5,29 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 
 /** 配置 angular i18n **/
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
+import { LoginComponent } from './login/login.component';
+import { LoginWrapperComponent } from './login-wrapper/login-wrapper.component';
+import { RegisterComponent } from './register/register.component';
+import { RegisterWrapperComponent } from './register-wrapper/register-wrapper.component';
 registerLocaleData(zh);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    LoginWrapperComponent,
+    RegisterComponent,
+    RegisterWrapperComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     /** 导入 ng-zorro-antd 模块 **/

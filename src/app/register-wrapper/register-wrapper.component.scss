@@ -1,0 +1,58 @@
+.anticon-close-circle {
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s;
+  font-size: 12px;
+}
+
+.anticon-close-circle:hover {
+  color: #999;
+}
+
+.anticon-close-circle:active {
+  color: #666;
+}
+
+.register-wrapper {
+  width: 340px;
+  height: 450px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 140px;
+}
+
+.register-top {
+  background: 0 0;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 0 30px;
+  border-radius: 2px 2px 0 0;
+  zoom: 1;
+  margin-bottom: -1px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 20px;
+  color: rgba(0,0,0,.85);
+  font-weight: 500;
+}
+
+.register-content {
+  padding: 0 30px;
+
+  a {
+    font-size: 12px;
+    color: #1890ff;
+    position: relative;
+    top: 10px;
+  }
+}
+
+.register-input {
+  margin-top: 30px;
+}
+
+.check-box, .register-btn {
+  margin-top: 20px;
+}
