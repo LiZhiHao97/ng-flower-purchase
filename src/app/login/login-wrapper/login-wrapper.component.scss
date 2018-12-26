@@ -13,21 +13,22 @@
   color: #666;
 }
 
-.register-wrapper {
-  width: 340px;
-  height: 450px;
+.login-wrapper {
+  width: 300px;
+  height: 300px;
   box-shadow: 0 0 10px rgba(0, 0, 0, .2);
   position: absolute;
   left: 0;
   right: 0;
   margin: 0 auto;
-  top: 140px;
+  top: 160px;
+  background: #fff;
 }
 
-.register-top {
+.login-top {
   background: 0 0;
   border-bottom: 1px solid #e8e8e8;
-  padding: 0 30px;
+  padding: 0 24px;
   border-radius: 2px 2px 0 0;
   zoom: 1;
   margin-bottom: -1px;
@@ -38,8 +39,8 @@
   font-weight: 500;
 }
 
-.register-content {
-  padding: 0 30px;
+.login-content {
+  padding: 0 24px;
 
   a {
     font-size: 12px;
@@ -49,10 +50,14 @@
   }
 }
 
-.register-input {
+.username-input {
   margin-top: 30px;
 }
 
-.check-box, .register-btn {
-  margin-top: 20px;
+.password-input {
+  margin-top: 30px;
+}
+
+.login-btn {
+  margin-top: 30px;
 }

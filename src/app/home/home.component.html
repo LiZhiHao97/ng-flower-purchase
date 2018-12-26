@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="home-top">
+      <a class="person-center-btn" (click)="open()">
+        <img src="../../assets/imgs/0.png" alt="">
+        <span>个人中心</span>
+      </a>
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="footer">
+        Copyright © 2017.Company name All rights reserved.
+    </div>
+</div>
+<nz-drawer [nzClosable]="false" [nzVisible]="visible" nzPlacement="left" nzTitle="个人中心" (nzOnClose)="close()">
+  <div class="user-info">
+    <div class="user-info-left">
+      <img src="../../assets/imgs/0.png" alt="">
+    </div>
+    <div class="user-info-right">
+      <p class="user-name">该用户已成仙</p>
+    </div>
+  </div>
+  <app-person-center-menu></app-person-center-menu>
+</nz-drawer>
