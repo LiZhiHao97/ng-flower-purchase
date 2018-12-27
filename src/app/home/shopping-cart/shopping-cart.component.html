@@ -1,3 +1,43 @@
-<p>
-  shopping-cart works!
-</p>
+<div class="shopping-cart">
+    <h1>我的购物车</h1>
+    <nz-table
+    #rowSelectionTable
+    [nzData]="data"
+    (nzCurrentPageDataChange)="currentPageDataChange($event)"
+    (nzPageIndexChange)="refreshStatus()"
+    (nzPageSizeChange)="refreshStatus()">
+    <thead>
+      <tr>
+        <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+        <th>产品id</th>
+        <th>名称</th>
+        <th>单价</th>
+        <th>数量</th>
+        <th>操作</th>
+        <th>添加日期</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of rowSelectionTable.data">
+        <td nzShowCheckbox [(nzChecked)]="data.checked" (nzCheckedChange)="refreshStatus()"></td>
+        <td>{{data.pid}}</td>
+        <td>{{data.name}}</td>
+        <td>{{data.price}}</td>
+        <td>{{data.quantity}}</td>
+        <td>
+            <a (click)="reduce(data)"><i nz-icon type="minus-square" theme="outline"></i></a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a (click)="add(data)"><i nz-icon type="plus-square" theme="outline"></i></a>
+        </td>
+        <td>{{data.create_time}}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <div *ngIf="totalPrice" class="totalPrice">
+    <div class="total-price-container">
+      <span>总价:</span>
+      <span class="totalPrice-data">¥{{totalPrice}}</span>
+    </div>
+    <button nz-button nzType="primary" nzSize="large">结算</button>
+  </div>
+</div>

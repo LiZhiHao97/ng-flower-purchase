@@ -1,3 +1,124 @@
-<p>
-  address works!
-</p>
+<div class="address">
+  <nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
+    <ng-template #item let-item>
+      <nz-list-item [nzContent]="item.receiver_zip" [nzActions]="[editAction,deleteAction]">
+        <ng-template #editAction><a (click)="craeteEditModal(editModal, item)">编辑</a></ng-template>
+        <ng-template #deleteAction><a>删除</a></ng-template>
+        <nz-list-item-meta
+          [nzTitle]="nzTitle"
+          nzDescription={{item.receiver_province+item.receiver_city+item.receiver_district+item.receiver_address}}>
+          <ng-template #nzTitle>
+            <a>{{item.receiver_name + '  ' + item.receiver_phone}}</a>
+          </ng-template>
+        </nz-list-item-meta>
+      </nz-list-item>
+    </ng-template>
+  </nz-list>
+  <button nz-button nzType="dashed" nzBlock class="add-address-btn" (click)="createAddModal(addModal)">添加地址</button>
+</div>
+<ng-template #editModal>
+    <div *ngIf="curAddressEdit">
+        <div nz-row class="address-row">
+          <div nz-col nzSpan="6" style="text-align: right;line-height: 30px;">收货人:</div>
+          <div nz-col nzSpan="1"></div>
+          <div nz-col nzSpan="12">
+            <input nz-input placeholder="Basic usage" [(ngModel)]="curAddressEdit.receiver_name">
+          </div>
+        </div>
+        <div nz-row class="address-row">
+          <div nz-col nzSpan="6" style="text-align: right;line-height: 30px;">手机号码:</div>
+          <div nz-col nzSpan="1"></div>
+          <div nz-col nzSpan="12">
+            <input nz-input placeholder="Basic usage" [(ngModel)]="curAddressEdit.receiver_phone">
+          </div>
+        </div>
+        <div nz-row class="address-row">
+          <div nz-col nzSpan="6" style="text-align: right;line-height: 30px;">所在省份:</div>
+          <div nz-col nzSpan="1"></div>
+          <div nz-col nzSpan="12">
+            <input nz-input placeholder="Basic usage" [(ngModel)]="curAddressEdit.receiver_province">
+          </div>
+        </div>
+        <div nz-row class="address-row">
+          <div nz-col nzSpan="6" style="text-align: right;line-height: 30px;">所在城市:</div>
+          <div nz-col nzSpan="1"></div>
+          <div nz-col nzSpan="12">
+            <input nz-input placeholder="Basic usage" [(ngModel)]="curAddressEdit.receiver_city">
+          </div>
+        </div>
+        <div nz-row class="address-row">
+          <div nz-col nzSpan="6" style="text-align: right;line-height: 30px;">所在区:</div>
+          <div nz-col nzSpan="1"></div>
+          <div nz-col nzSpan="12">
+            <input nz-input placeholder="Basic usage" [(ngModel)]="curAddressEdit.receiver_district">
+          </div>
+        </div>
+        <div nz-row class="address-row">
+          <div nz-col nzSpan="6" style="text-align: right;line-height: 30px;">详细地址:</div>
+          <div nz-col nzSpan="1"></div>
+          <div nz-col nzSpan="12">
+            <input nz-input placeholder="Basic usage" [(ngModel)]="curAddressEdit.receiver_address">
+          </div>
+        </div>
+        <div nz-row class="address-row">
+          <div nz-col nzSpan="6" style="text-align: right;line-height: 30px;">邮编:</div>
+          <div nz-col nzSpan="1"></div>
+          <div nz-col nzSpan="12">
+            <input nz-input placeholder="Basic usage" [(ngModel)]="curAddressEdit.receiver_zip">
+          </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #addModal>
+  <div>
+      <div nz-row class="address-row">
+        <div nz-col nzSpan="6" style="text-align: right;line-height: 30px;">收货人:</div>
+        <div nz-col nzSpan="1"></div>
+        <div nz-col nzSpan="12">
+          <input nz-input placeholder="Basic usage" [(ngModel)]="intputAddress.receiver_name">
+        </div>
+      </div>
+      <div nz-row class="address-row">
+        <div nz-col nzSpan="6" style="text-align: right;line-height: 30px;">手机号码:</div>
+        <div nz-col nzSpan="1"></div>
+        <div nz-col nzSpan="12">
+          <input nz-input placeholder="Basic usage" [(ngModel)]="intputAddress.receiver_phone">
+        </div>
+      </div>
+      <div nz-row class="address-row">
+        <div nz-col nzSpan="6" style="text-align: right;line-height: 30px;">所在省份:</div>
+        <div nz-col nzSpan="1"></div>
+        <div nz-col nzSpan="12">
+          <input nz-input placeholder="Basic usage" [(ngModel)]="intputAddress.receiver_province">
+        </div>
+      </div>
+      <div nz-row class="address-row">
+        <div nz-col nzSpan="6" style="text-align: right;line-height: 30px;">所在城市:</div>
+        <div nz-col nzSpan="1"></div>
+        <div nz-col nzSpan="12">
+          <input nz-input placeholder="Basic usage" [(ngModel)]="intputAddress.receiver_city">
+        </div>
+      </div>
+      <div nz-row class="address-row">
+        <div nz-col nzSpan="6" style="text-align: right;line-height: 30px;">所在区:</div>
+        <div nz-col nzSpan="1"></div>
+        <div nz-col nzSpan="12">
+          <input nz-input placeholder="Basic usage" [(ngModel)]="intputAddress.receiver_district">
+        </div>
+      </div>
+      <div nz-row class="address-row">
+        <div nz-col nzSpan="6" style="text-align: right;line-height: 30px;">详细地址:</div>
+        <div nz-col nzSpan="1"></div>
+        <div nz-col nzSpan="12">
+          <input nz-input placeholder="Basic usage" [(ngModel)]="intputAddress.receiver_address">
+        </div>
+      </div>
+      <div nz-row class="address-row">
+        <div nz-col nzSpan="6" style="text-align: right;line-height: 30px;">邮编:</div>
+        <div nz-col nzSpan="1"></div>
+        <div nz-col nzSpan="12">
+          <input nz-input placeholder="Basic usage" [(ngModel)]="intputAddress.receiver_zip">
+        </div>
+      </div>
+    </div>
+</ng-template>
