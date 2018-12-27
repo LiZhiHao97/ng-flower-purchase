@@ -1,10 +1,10 @@
-<div class="product-detail">
+<div class="product-detail"*ngIf="data">
   <div class="product-detail-left">
-    <img src="../../../assets/flowers/百合.jpg" alt="">
+    <img src="../../../assets/flowers/{{data['img']}}" alt="">
   </div>
   <div class="product-detail-right">
     <div class="title">
-      百合花
+      {{data['name']}}
       <span>编号：10224</span>
     </div>
     <div class="details">
@@ -14,7 +14,7 @@
             价格:
           </div>
           <div class="detail-content price">
-            ¥288
+            ¥{{data['price']}}
           </div>
         </li>
         <li>
@@ -38,7 +38,7 @@
             花语:
           </div>
           <div class="detail-content">
-            深深的情谊与祝福,绵绵的思念与问候,在这美好的日子,把祝愿随着鲜花带给远方的你
+            {{data['description']}}
           </div>
         </li>
       </ul>

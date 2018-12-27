@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RegisterService } from '../../service/register.service';
 
 @Component({
   selector: 'app-register-wrapper',
@@ -10,11 +11,15 @@ export class RegisterWrapperComponent implements OnInit {
   password: string;
   checkPassword: string;
   email: string;
-  radioValue = '男';
+  sex = '男';
 
-  constructor() { }
+  constructor(private registerService: RegisterService) { }
 
   ngOnInit() {
   }
 
+  register(): void {
+    const { username, password, sex, email } = this;
+    this.registerService.register({username, password, sex, email }, this.checkPassword);
+  }
 }

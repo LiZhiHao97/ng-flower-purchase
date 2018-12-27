@@ -9,7 +9,7 @@
       <nz-input-group [nzSuffix]="suffixTemplate" [nzPrefix]="prefixTemplate2" class="password-input">
         <input type="password" nz-input placeholder="密码" [(ngModel)]="password">
       </nz-input-group>
-      <button nz-button nzType="primary" nzBlock class="login-btn">登录</button>
+      <button nz-button nzType="primary" nzBlock class="login-btn" (click)="login()">登录</button>
       <a routerLink="/register">还没有账号?先注册一个</a>
     </div>
   </div>

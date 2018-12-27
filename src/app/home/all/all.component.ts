@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../../service/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all',
@@ -6,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all.component.scss']
 })
 export class AllComponent implements OnInit {
-  constructor() { }
+  data: Object[];
+
+  constructor(private productService: ProductService,
+    private router: Router) { }
 
   ngOnInit() {
+    this.productService.fetchAll().subscribe(res => {
+      this.data = res['data'];
+      console.log(this.data);
+    });
+  }
+
+  gotoDetal(id: string): void {
+    this.router.navigate([`/home/all/${id}`]);
   }
 
 }

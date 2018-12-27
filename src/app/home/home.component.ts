@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   visible = false;
+  username: string;
+  avatarUrl: string;
 
-  constructor() { }
+  constructor(private cookieService: CookieService) { }
 
   ngOnInit() {
+    this.username = this.cookieService.get('username');
+    this.avatarUrl = `../../assets/imgs/${this.cookieService.get('avatar')}.png`;
   }
 
   open(): void {
@@ -19,6 +24,12 @@ export class HomeComponent implements OnInit {
 
   close(): void {
     this.visible = false;
+  }
+
+  logout() {
+    this.visible = false;
+    this.username = null;
+    this.avatarUrl = null;
   }
 
 }
