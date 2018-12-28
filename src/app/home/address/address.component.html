@@ -3,7 +3,7 @@
     <ng-template #item let-item>
       <nz-list-item [nzContent]="item.receiver_zip" [nzActions]="[editAction,deleteAction]">
         <ng-template #editAction><a (click)="craeteEditModal(editModal, item)">编辑</a></ng-template>
-        <ng-template #deleteAction><a>删除</a></ng-template>
+        <ng-template #deleteAction><a (click)="delete(item)">删除</a></ng-template>
         <nz-list-item-meta
           [nzTitle]="nzTitle"
           nzDescription={{item.receiver_province+item.receiver_city+item.receiver_district+item.receiver_address}}>

@@ -14,7 +14,7 @@
             价格:
           </div>
           <div class="detail-content price">
-            ¥{{data['price']}}
+            ¥{{data['price'] * quantity}}
           </div>
         </li>
         <li>
@@ -54,7 +54,7 @@
         <i nz-icon type="credit-card" theme="outline"></i>
         立即购买
       </button>
-      <button nz-button nzType="default" nzSize="large">
+      <button nz-button nzType="default" nzSize="large" (click)="addToShoppingCart()">
         <i nz-icon type="shopping-cart" theme="outline"></i>
         加入购物车
       </button>

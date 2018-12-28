@@ -4002,6 +4002,10 @@ ng-zorro-antd@^7.0.0-rc.2:
     date-fns "^1.29.0"
     tslib "^1.9.0"
 
+ngx-cookie-service@^2.1.0:
+  version "2.1.0"
+  resolved "http://registry.npm.taobao.org/ngx-cookie-service/download/ngx-cookie-service-2.1.0.tgz#8023f9edfcd8bd4f0b299b1f0c263112dbb0e261"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "http://registry.npm.taobao.org/nice-try/download/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"

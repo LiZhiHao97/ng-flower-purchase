@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ShoppingCartService } from '../../service/shopping-cart.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -10,36 +12,19 @@ export class ShoppingCartComponent implements OnInit {
   indeterminate = false;
   displayData = [];
   totalPrice: number;
-  data = [
-    {
-      pid: 1,
-      name: '百合花',
-      price: 299,
-      quantity: 1,
-      create_time: '2018-12-26',
-      checked: false
-    },
-    {
-      pid: 1,
-      name: '菊花',
-      price: 188,
-      quantity: 1,
-      create_time: '2018-12-26',
-      checked: false
-    },
-    {
-      pid: 1,
-      name: '水仙花',
-      price: 199,
-      quantity: 1,
-      create_time: '2018-12-26',
-      checked: false
-    }
-  ];
+  data = [];
 
-  constructor() { }
+  constructor(private shoppingCartService: ShoppingCartService,
+    private cookieService: CookieService) { }
 
   ngOnInit() {
+    const uid: string = this.cookieService.get('uid');
+    this.shoppingCartService.fetchAll(uid).subscribe(res => {
+      const data = [...res['data']];
+      data.map(item => item.checked = item.checked ? true : false);
+      this.data = data;
+      this.calTotalPrice();
+    });
   }
 
   currentPageDataChange($event: Array<{ pid: number;
@@ -69,20 +54,22 @@ export class ShoppingCartComponent implements OnInit {
     if (data.quantity > 1) {
       data.quantity -= 1;
     }
-    this.refreshStatus();
+    this.shoppingCartService.changeQuantity(data.id, data.quantity).subscribe(res => {
+      this.refreshStatus();
+    });
   }
 
   add(data) {
     if (data.quantity < 99) {
       data.quantity += 1;
     }
-    this.refreshStatus();
+    this.shoppingCartService.changeQuantity(data.id, data.quantity).subscribe(res => {
+      this.refreshStatus();
+    });
   }
 
   calTotalPrice() {
     const checkData = [...this.displayData].filter(item => item.checked === true);
-    console.log(checkData);
-
     if (checkData.length) {
       let totalPrice = 0;
       for (const data of checkData) {
@@ -91,5 +78,4 @@ export class ShoppingCartComponent implements OnInit {
       this.totalPrice = totalPrice;
     }
   }
-
 }
