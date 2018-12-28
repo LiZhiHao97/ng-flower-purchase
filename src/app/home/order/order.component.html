@@ -1,0 +1,64 @@
+<div class="item">
+    <h5>订单详情</h5>
+    <div nz-row style="padding-bottom: 16px;">
+      <div nz-col nzSpan="8">
+        订单编号：1
+      </div>
+      <div nz-col nzSpan="8">
+        用户姓名：李祉昊
+      </div>
+      <div nz-col nzSpan="8">
+        联系电话：13868224404
+      </div>
+    </div>
+    <div nz-row style="padding-bottom: 16px;">
+      <div nz-col nzSpan="8">
+        取货地址：浙江省舟山市普陀区xxx路xx小区xx
+      </div>
+      <div nz-col nzSpan="8">
+        快递类型：顺丰包邮
+      </div>
+      <div nz-col nzSpan="8">
+        创建日期：2018-12-28
+      </div>
+    </div>
+    <div class="line"></div>
+    <h5 style="margin-bottom: 20px;">商品清单</h5>
+    <nz-table #basicTable [nzData]="dataSet" [nzHideOnSinglePage]="true">
+      <thead>
+        <tr>
+          <th>商品编号</th>
+          <th>商品名称</th>
+          <th>状态</th>
+          <th style="text-align: right;">单价</th>
+          <th style="text-align: right;">数量</th>
+          <th style="text-align: right;">金额</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{data.pid}}</td>
+          <td>{{data.name}}</td>
+          <td>
+            <nz-badge nzStatus="processing" style="position: relative;bottom: 2px;"></nz-badge>
+            派送中
+          </td>
+          <td style="text-align: right;">{{data.price}}</td>
+          <td style="text-align: right;">{{data.quantity}}</td>
+          <td style="text-align: right;">{{data.price * data.quantity}}</td>
+        </tr>
+      </tbody>
+      <tr class="ant-table-row ant-table-row-level-0" data-row-key="总计">
+        <td class="" colspan="4">
+          <span class="ant-table-row-indent indent-level-0" style="padding-left: 0px;"></span>
+          <span style="font-weight: 600;">总计</span>
+        </td>
+        <td class="" style="text-align: right;">
+          <span style="font-weight: 600;">{{totalCount}}</span>
+        </td>
+        <td class="" style="text-align: right;">
+          <span style="font-weight: 600;">{{totalPrice}}</span>
+        </td>
+      </tr>
+    </nz-table>
+  </div>
