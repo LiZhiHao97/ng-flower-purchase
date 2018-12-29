@@ -1,0 +1,38 @@
+<div class="success-page">
+  <div class="success-page-icon">
+    <i nz-icon type="check-circle" theme="fill"></i>
+  </div>
+  <div class="success-page-title">
+    支付成功
+  </div>
+  <div class="success-page-description">
+    您已经成功支付，为您生成了对应的订单，我们将会在最短的时间内为您挑选除优质的商品进行配送，您可以在个人中心中查看您的订单的详细信息，以及配送情况，感谢您的购买，欢迎下次光临。
+  </div>
+  <div class="success-page-detail">
+    <h5>详情</h5>
+    <div nz-row>
+      <div nz-col nzSpan="12">
+          订单 ID：23421
+      </div>
+      <div nz-col nzSpan="12">
+          收货人：该用户已成仙
+      </div>
+    </div>
+    <div nz-row style="margin-bottom: 10px;">
+      <div nz-col nzSpan="24">
+          创建时间：2018-12-29
+      </div>
+    </div>
+    <nz-steps [nzCurrent]="1" nzProgressDot style="position:relative; right: 40px;font-size: 14px;">
+      <nz-step nzTitle="生成订单" nzDescription=""></nz-step>
+      <nz-step nzTitle="完成支付" nzDescription=""></nz-step>
+      <nz-step nzTitle="商品配送" nzDescription=""></nz-step>
+      <nz-step nzTitle="交易完成" nzDescription=""></nz-step>
+    </nz-steps>
+  </div>
+  <div class="success-btns">
+    <button nz-button nzType="primary" class="btn" (click)="gotoOrders()">查看订单</button>
+    <button nz-button nzType="default" class="btn" (click)="gotoShoppingCart()">返回购物车</button>
+    <button nz-button nzType="default" class="btn" (click)="gotoAll()">返回商品</button>
+  </div>
+</div>

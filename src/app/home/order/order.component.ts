@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { OrderService } from '../../service/order.service';
 
 @Component({
   selector: 'app-order',
@@ -8,30 +9,22 @@ import { Component, OnInit } from '@angular/core';
 export class OrderComponent implements OnInit {
   totalPrice: number;
   totalCount: number;
-  dataSet = [
-    {
-      pid: '1',
-      name: '狗篮子花',
-      price: 299,
-      quantity: 3
-    },
-    {
-      pid: '2',
-      name: '水仙花',
-      price: 188,
-      quantity: 4,
-    }
-  ];
+  @Input()
+  data: Object;
+  dataSet = [];
 
-  constructor() { }
+  constructor(private orderService: OrderService) { }
 
   ngOnInit() {
-    this.totalPrice = 0;
-    this.totalCount = 0;
-    for (const item of this.dataSet) {
-      this.totalPrice += item.quantity * item.price;
-      this.totalCount += item.quantity;
-    }
+    this.orderService.fetchAllSubOrderByOide(this.data['id']).subscribe(res => {
+      this.dataSet = res['data'];
+      this.totalPrice = 0;
+      this.totalCount = 0;
+      for (const item of this.dataSet) {
+        this.totalPrice += item.quantity * item.price;
+        this.totalCount += item.quantity;
+      }
+    });
   }
 
 }

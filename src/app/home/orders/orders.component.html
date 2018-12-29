@@ -1,3 +1,5 @@
-<div class="orders">
-  <app-order></app-order>
+<div class="orders" *ngIf="orders.length">
+  <div *ngFor="let order of orders">
+    <app-order [data]="order"></app-order>
+  </div>
 </div>

@@ -6,6 +6,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AddressComponent } from './address/address.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { SuccessPageComponent } from './success-page/success-page.component';
 
 export const homeRoutes = [
     {
@@ -37,6 +38,10 @@ export const homeRoutes = [
         {
           path: 'all/:pid',
           component: ProductDetailComponent
+        },
+        {
+          path: 'success',
+          component: SuccessPageComponent
         }
       ]
     }

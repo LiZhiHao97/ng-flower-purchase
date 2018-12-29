@@ -12,6 +12,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { AddressComponent } from './address/address.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { OrderComponent } from './order/order.component';
+import { SuccessPageComponent } from './success-page/success-page.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { OrderComponent } from './order/order.component';
     OrdersComponent,
     AddressComponent,
     ProductDetailComponent,
-    OrderComponent
+    OrderComponent,
+    SuccessPageComponent
   ],
   imports: [
     SharedModule,

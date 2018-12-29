@@ -2,10 +2,10 @@
     <h5>订单详情</h5>
     <div nz-row style="padding-bottom: 16px;">
       <div nz-col nzSpan="8">
-        订单编号：1
+        订单编号：{{data['id']}}
       </div>
       <div nz-col nzSpan="8">
-        用户姓名：李祉昊
+        用户姓名：{{data['username']}}
       </div>
       <div nz-col nzSpan="8">
         联系电话：13868224404
@@ -13,13 +13,13 @@
     </div>
     <div nz-row style="padding-bottom: 16px;">
       <div nz-col nzSpan="8">
-        取货地址：浙江省舟山市普陀区xxx路xx小区xx
+        取货地址：{{data['address']}}
       </div>
       <div nz-col nzSpan="8">
         快递类型：顺丰包邮
       </div>
       <div nz-col nzSpan="8">
-        创建日期：2018-12-28
+        创建日期：{{data['create_time']}}
       </div>
     </div>
     <div class="line"></div>
@@ -38,7 +38,7 @@
       <tbody>
         <tr *ngFor="let data of basicTable.data">
           <td>{{data.pid}}</td>
-          <td>{{data.name}}</td>
+          <td>{{data.pname}}</td>
           <td>
             <nz-badge nzStatus="processing" style="position: relative;bottom: 2px;"></nz-badge>
             派送中

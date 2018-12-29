@@ -33,11 +33,11 @@
       </tr>
     </tbody>
   </nz-table>
-  <div *ngIf="totalPrice" class="totalPrice">
+  <div *ngIf="totalPrice && totalPrice > 0" class="totalPrice">
     <div class="total-price-container">
       <span>总价:</span>
       <span class="totalPrice-data">¥{{totalPrice}}</span>
     </div>
-    <button nz-button nzType="primary" nzSize="large">结算</button>
+    <button nz-button nzType="primary" nzSize="large" (click)="settle()">结算</button>
   </div>
 </div>

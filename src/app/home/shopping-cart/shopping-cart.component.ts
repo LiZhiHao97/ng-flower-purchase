@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../../service/shopping-cart.service';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,7 +16,8 @@ export class ShoppingCartComponent implements OnInit {
   data = [];
 
   constructor(private shoppingCartService: ShoppingCartService,
-    private cookieService: CookieService) { }
+    private cookieService: CookieService,
+    private router: Router) { }
 
   ngOnInit() {
     const uid: string = this.cookieService.get('uid');
@@ -69,13 +71,18 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   calTotalPrice() {
+    console.log(1);
     const checkData = [...this.displayData].filter(item => item.checked === true);
+    let totalPrice = 0;
     if (checkData.length) {
-      let totalPrice = 0;
       for (const data of checkData) {
         totalPrice += data.quantity * data.price;
       }
-      this.totalPrice = totalPrice;
     }
+    this.totalPrice = totalPrice;
+  }
+
+  settle(): void {
+    this.router.navigate(['/home/success']);
   }
 }
