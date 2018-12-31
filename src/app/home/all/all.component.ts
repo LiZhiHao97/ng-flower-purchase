@@ -16,7 +16,6 @@ export class AllComponent implements OnInit {
   ngOnInit() {
     this.productService.fetchAll().subscribe(res => {
       this.data = res['data'];
-      console.log(this.data);
     });
   }
 

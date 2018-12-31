@@ -38,6 +38,10 @@ export class AddressService {
     return this.http.get(`/api/address/${uid}`);
   }
 
+  fetchAllByUid(uid: string) {
+    return this.http.get(`/api/address/${uid}`);
+  }
+
   createNotification(type: string, msg: string, text: string): void {
     this.notification.create(type, msg, text);
   }

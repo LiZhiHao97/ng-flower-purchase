@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../../service/shopping-cart.service';
+import { NzModalService } from 'ng-zorro-antd';
 import { CookieService } from 'ngx-cookie-service';
+import { AddressService } from '../../service/address.service';
+import { OrderService } from '../../service/order.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,9 +17,15 @@ export class ShoppingCartComponent implements OnInit {
   displayData = [];
   totalPrice: number;
   data = [];
+  addressData = [];
+  radioValue = '0';
 
-  constructor(private shoppingCartService: ShoppingCartService,
+  constructor(
+    private modalService: NzModalService,
+    private shoppingCartService: ShoppingCartService,
     private cookieService: CookieService,
+    private addressService: AddressService,
+    private orderService: OrderService,
     private router: Router) { }
 
   ngOnInit() {
@@ -29,7 +38,7 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
 
-  currentPageDataChange($event: Array<{ pid: number;
+  currentPageDataChange($event: Array<{ pid: string;
     name: string; price: number; quantity: number; create_time: string; checked: boolean; }>): void {
     this.displayData = $event;
     this.refreshStatus();
@@ -71,7 +80,6 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   calTotalPrice() {
-    console.log(1);
     const checkData = [...this.displayData].filter(item => item.checked === true);
     let totalPrice = 0;
     if (checkData.length) {
@@ -82,7 +90,39 @@ export class ShoppingCartComponent implements OnInit {
     this.totalPrice = totalPrice;
   }
 
-  settle(): void {
-    this.router.navigate(['/home/success']);
+  settle(addressTpl): void {
+    this.addressService.fetchAllByUid(this.cookieService.get('uid')).subscribe(res => {
+      this.addressData = res['data'];
+      this.modalService.create({
+        nzTitle: '选择收货地址',
+        nzContent: addressTpl,
+        nzClosable: false,
+        nzOnOk: () => {
+          const selectAddress = this.addressData[this.radioValue];
+          const { receiver_province, receiver_city, receiver_district, receiver_address } = selectAddress;
+          const address = [receiver_province, receiver_city, receiver_district, receiver_address].join('');
+          const uid = this.cookieService.get('uid');
+          const username = selectAddress.receiver_name;
+          const phone = selectAddress.receiver_phone;
+          this.orderService.generateOrder({ uid, username, phone, address }).subscribe(res2 => {
+            const subOrdersProduct = this.data.filter(item => item.checked = true);
+            const subOrdersData = [];
+            for (const subOrder of subOrdersProduct) {
+              const subOrderData = {
+                oid: res2['oid'],
+                pid: subOrder.pid,
+                pname: subOrder.pname,
+                price: subOrder.price,
+                quantity: subOrder.quantity
+              };
+              subOrdersData.push(subOrderData);
+            }
+            this.orderService.generateSubOrder(subOrdersData).subscribe(res3 => {
+              this.router.navigate(['/home/success']);
+            });
+          });
+        }
+      });
+    });
   }
 }
