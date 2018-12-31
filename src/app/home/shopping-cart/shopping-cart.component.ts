@@ -105,7 +105,7 @@ export class ShoppingCartComponent implements OnInit {
           const username = selectAddress.receiver_name;
           const phone = selectAddress.receiver_phone;
           this.orderService.generateOrder({ uid, username, phone, address }).subscribe(res2 => {
-            const subOrdersProduct = this.data.filter(item => item.checked = true);
+            const subOrdersProduct = this.data.filter(item => item.checked === true);
             const subOrdersData = [];
             for (const subOrder of subOrdersProduct) {
               const subOrderData = {
